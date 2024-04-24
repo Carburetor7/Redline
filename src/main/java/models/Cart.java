@@ -10,6 +10,10 @@ public class Cart implements Serializable{
 
 	public int quantity;
 	
+	public Cart() {
+		
+	}
+	
 	public Cart(String userId, String prodId, int quantity) {
 		super();
 		this.userId = userId;

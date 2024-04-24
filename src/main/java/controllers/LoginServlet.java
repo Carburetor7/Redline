@@ -26,33 +26,24 @@ public class LoginServlet extends HttpServlet {
 
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
-		String userType = request.getParameter("usertype");
+//		String userType = request.getParameter("usertype");
 		response.setContentType("text/html");
 
 		String status = "Login Denied! Invalid Username or password.";
+		// Login as Admin
+		if (password.equals("admin") && userName.equals("admin@gmail.com")) {
+			// valid
+			RequestDispatcher rd = request.getRequestDispatcher("adminViewProduct.jsp");
 
-		if (userType.equals("admin")) { // Login as Admin
+			HttpSession session = request.getSession();
 
-			if (password.equals("admin") && userName.equals("admin@gmail.com")) {
-				// valid
+			session.setAttribute("username", userName);
+			session.setAttribute("password", password);
+			session.setAttribute("usertype", "admin");
 
-				RequestDispatcher rd = request.getRequestDispatcher("adminViewProduct.jsp");
+			rd.forward(request, response);
 
-				HttpSession session = request.getSession();
-
-				session.setAttribute("username", userName);
-				session.setAttribute("password", password);
-				session.setAttribute("usertype", userType);
-
-				rd.forward(request, response);
-
-			} else {
-				// Invalid;
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp?message=" + status);
-				rd.include(request, response);
-			}
-
-		} else { // Login as customer
+		}else { // Login as customer
 
 			UserService udao = new UserService();
 
@@ -69,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 
 				session.setAttribute("username", userName);
 				session.setAttribute("password", password);
-				session.setAttribute("usertype", userType);
+				session.setAttribute("usertype", "customer");
 
 				RequestDispatcher rd = request.getRequestDispatcher("userHome.jsp");
 
