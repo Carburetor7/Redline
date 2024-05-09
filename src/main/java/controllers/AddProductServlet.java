@@ -27,7 +27,6 @@ public class AddProductServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userType = (String) session.getAttribute("usertype");
 		String userName = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
 
 		if (userType == null || !userType.equals("admin")) {
 
@@ -35,7 +34,7 @@ public class AddProductServlet extends HttpServlet {
 
 		}
 
-		else if (userName == null || password == null) {
+		else if (userName == null) {
 
 			response.sendRedirect("login.jsp?message=Session Expired, Login Again to Continue!");
 		}

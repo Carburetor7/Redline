@@ -36,11 +36,7 @@ public class DBConnection {
 	
 	
 	public static void closeConnection(Connection con) {
-		 try { if (con != null && !con.isClosed()) {
-			 con.close(); } 
-		 } catch (SQLException e) {
-				 e.printStackTrace(); 
-			}
+		
 	}
 
 	public static void closeConnection(ResultSet rs) {

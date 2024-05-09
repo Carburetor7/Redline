@@ -21,13 +21,12 @@ public class RemoveProductServlet extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		String userType = (String) session.getAttribute("usertype");
 		String userName = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
 
 		if (userType == null || !userType.equals("admin")) {
 
@@ -35,7 +34,7 @@ public class RemoveProductServlet extends HttpServlet {
 
 		}
 
-		else if (userName == null || password == null) {
+		else if (userName == null) {
 
 			response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
 		}
@@ -57,7 +56,7 @@ public class RemoveProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doGet(request, response);
+		doDelete(request, response);
 	}
 	
 }

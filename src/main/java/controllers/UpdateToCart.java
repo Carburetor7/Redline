@@ -27,13 +27,12 @@ public class UpdateToCart extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
 
-		if (userName == null || password == null) {
+		if (userName == null) {
 
 			response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
 		}

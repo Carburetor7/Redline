@@ -30,9 +30,8 @@ public class AddCartServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
 		String usertype = (String) session.getAttribute("usertype");
-		if (userName == null || password == null || usertype == null || !usertype.equalsIgnoreCase("customer")) {
+		if (userName == null || usertype == null || !usertype.equalsIgnoreCase("customer")) {
 			response.sendRedirect("login.jsp?message=Session Expired, Login Again to Continue!");
 			return;
 		}
@@ -67,11 +66,13 @@ public class AddCartServlet extends HttpServlet {
 
 			pw.println("<script>document.getElementById('message').innerHTML='" + status + "'</script>");
 		} else if (availableQty < pQty) {
+			System.out.println("working");
 
 			String status = null;
 
 			if (availableQty == 0) {
 				status = "Product is Out of Stock!";
+				System.out.println("working");
 			} else {
 
 				cart.updateProductToCart(userId, prodId, availableQty);

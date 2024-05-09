@@ -27,6 +27,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
+	public User(String userName, Long mobileNo, String emailId, String address, int pinCode) {
+		super();
+		this.name = userName;
+		this.mobile = mobileNo;
+		this.email = emailId;
+		this.address = address;
+		this.pinCode = pinCode;
+	}
 	
 	public String getName() {
 		return name;

@@ -42,7 +42,7 @@ public class ShipmentServlet extends HttpServlet {
 		String status = new OrderService().shipNow(orderId, prodId);
 		String pagename = "shippedItems.jsp";
 		if ("FAILURE".equalsIgnoreCase(status)) {
-			pagename = "unshippedItems.jsp";
+			pagename = "unShippedItems.jsp";
 		} else {
 			MailMessage.orderShipped(userName, new UserService().getFName(userName), orderId, amount);
 		}

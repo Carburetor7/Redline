@@ -1,6 +1,6 @@
 package utils;
 
-import jakarta.mail.MessagingException;
+import javax.mail.MessagingException;
 
 public class TestMail {
 

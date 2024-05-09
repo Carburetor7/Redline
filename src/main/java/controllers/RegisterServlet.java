@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.User;
 import services.impl.UserService;
 
-@WebServlet("/RegisterSrv")
+@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
 			status = "Password not matching!";
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("register.jsp?message=" + status);
+		RequestDispatcher rd = request.getRequestDispatcher("Register.jsp?message=" + status);
 
 		rd.forward(request, response);
 	}

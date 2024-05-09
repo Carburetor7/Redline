@@ -246,7 +246,7 @@ public class ProductService implements ProductInterface {
 		ResultSet rs = null;
 
 		try {
-			ps = con.prepareStatement("SELECT * FROM `shopping-cart`.product where lower(ptype) like ?;");
+			ps = con.prepareStatement("SELECT * FROM `origin_tech`.product where lower(ptype) like ?;");
 			ps.setString(1, "%" + type + "%");
 			rs = ps.executeQuery();
 
@@ -290,7 +290,7 @@ public class ProductService implements ProductInterface {
 
 		try {
 			ps = con.prepareStatement(
-					"SELECT * FROM `shopping-cart`.product where lower(ptype) like ? or lower(pname) like ? or lower(pinfo) like ?");
+					"SELECT * FROM `origin_tech`.product where lower(ptype) like ? or lower(pname) like ? or lower(pinfo) like ?");
 			search = "%" + search + "%";
 			ps.setString(1, search);
 			ps.setString(2, search);
@@ -407,7 +407,7 @@ public class ProductService implements ProductInterface {
 			status = "Both Products are Different, Updation Failed!";
 
 			return status;
-		}
+		}  
 
 		int prevQuantity = new ProductService().getProductQuantity(prevProductId);
 		Connection con = DBConnection.provideConnection();
@@ -415,14 +415,15 @@ public class ProductService implements ProductInterface {
 		PreparedStatement ps = null;
 
 		try {
-			ps = con.prepareStatement("update product set pname=?,ptype=?,pinfo=?,pprice=?,pquantity=? where pid=?");
+			ps = con.prepareStatement("update product set pname=?,ptype=?,pinfo=?,pprice=?,pquantity=?,image=? where pid=?");
 
 			ps.setString(1, updatedProduct.getProdName());
 			ps.setString(2, updatedProduct.getProdType());
 			ps.setString(3, updatedProduct.getProdInfo());
 			ps.setDouble(4, updatedProduct.getProdPrice());
 			ps.setInt(5, updatedProduct.getProdQuantity());
-			ps.setString(6, prevProductId);
+			ps.setBlob(6, updatedProduct.getProdImage());
+			ps.setString(7, prevProductId);
 
 			int k = ps.executeUpdate();
 			// System.out.println("prevQuantity: "+prevQuantity);

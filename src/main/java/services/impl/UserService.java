@@ -70,6 +70,44 @@ public class UserService implements UserInterface {
 
 		return status;
 	}
+	
+	public String updateUser(User user) {
+
+		String status = "User Updation Failed!";
+		
+		Connection conn = DBConnection.provideConnection();
+		PreparedStatement ps = null;
+		if (conn != null) {
+			System.out.println("Connected Successfully!");
+		}
+
+		try {
+
+			ps = conn.prepareStatement("update user set name=?,mobile=?,address=?,pincode=? where email=?");
+
+			ps.setString(1, user.getName());
+			ps.setLong(2, user.getMobile());
+			ps.setString(3, user.getAddress());
+			ps.setInt(4, user.getPinCode());
+			ps.setString(5, user.getEmail());
+
+			int k = ps.executeUpdate();
+
+			if (k > 0) {
+				status = "Profile Updated Successfully!";
+			}
+
+		} catch (SQLException e) {
+			status = "Error: " + e.getMessage();
+			e.printStackTrace();
+		}
+
+		DBConnection.closeConnection(ps);
+		DBConnection.closeConnection(ps);
+
+		return status;
+	}
+
 
 	@Override
 	public boolean isRegistered(String emailId) {
@@ -152,6 +190,45 @@ public class UserService implements UserInterface {
 			ps = con.prepareStatement("select * from user where email=? and password=?");
 			ps.setString(1, emailId);
 			ps.setString(2, password);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				user = new User();
+				user.setName(rs.getString("name"));
+				user.setMobile(rs.getLong("mobile"));
+				user.setEmail(rs.getString("email"));
+				user.setAddress(rs.getString("address"));
+				user.setPinCode(rs.getInt("pincode"));
+				user.setPassword(rs.getString("password"));
+
+				return user;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		DBConnection.closeConnection(con);
+		DBConnection.closeConnection(ps);
+		DBConnection.closeConnection(rs);
+
+		return user;
+	}
+	
+	
+	
+	public User getUserDetails(String emailId) {
+		// TODO Auto-generated method stub
+		User user = null;
+
+		Connection con = DBConnection.provideConnection();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			ps = con.prepareStatement("select * from user where email=?");
+			ps.setString(1, emailId);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

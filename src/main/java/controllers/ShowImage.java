@@ -35,7 +35,7 @@ public class ShowImage extends HttpServlet {
 		byte[] image = dao.getImage(prodId);
 
 		if (image == null) {
-			File fnew = new File(request.getServletContext().getRealPath("images/noimage.jpg"));
+			File fnew = new File(request.getServletContext().getRealPath("img/noimage.jpg"));
 			BufferedImage originalImage = ImageIO.read(fnew);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(originalImage, "jpg", baos);
