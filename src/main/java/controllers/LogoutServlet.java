@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.http.parser.Cookie;
+
 @WebServlet("/LogoutSrv")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,12 +26,22 @@ public class LogoutServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 
-		HttpSession session = request.getSession();
 
-		session.setAttribute("username", null);
-		session.setAttribute("password", null);
-		session.setAttribute("usertype", null);
-		session.setAttribute("userdata", null);
+		
+		javax.servlet.http.Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (javax.servlet.http.Cookie cookie : cookies) {
+				// Set max age to 0 to effectively delete the cookie
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+		}
+
+		// 2. Invalidate user session (if it exists)
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp?message=Successfully Logged Out!");
 

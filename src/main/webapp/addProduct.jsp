@@ -161,13 +161,10 @@
                     <div class="col-md-6 form-group">
                         <label for="product-type">Product Type</label>
                         <select name="type" id="product-type" class="form-control" required>
-                            <option value="mobile">MOBILE</option>
-                            <option value="tv">TV</option>
-                            <option value="camera">CAMERA</option>
-                            <option value="laptop">LAPTOP</option>
-                            <option value="tablet">TABLET</option>
-                            <option value="speaker">SPEAKER</option>
-                            <option value="other">Some Other Appliances</option>
+                            <option value="macbook">Macbook</option>
+                            <option value="acer">Acer</option>
+                            <option value="dell">Dell</option>
+                            <option value="hp">HP</option>
                         </select>
                     </div>
                 </div>

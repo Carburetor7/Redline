@@ -290,11 +290,10 @@ li{
                     <li class="category"><a href="#">Category <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li><a href="index.jsp?type=macbook">MacBook</a></li>
+                                <li><a href="index.jsp?type=macbook">Macbook</a></li>
                                 <li><a href="index.jsp?type=acer">Acer</a></li>
                                 <li><a href="index.jsp?type=dell">Dell</a></li>
-                                <li><a href="index.jsp?type=nitro">Nitro</a></li>
-                                <li><a href="index.jsp?type=ligion">Ligion</a></li>
+                                <li><a href="index.jsp?type=hp">HP</a></li>
                             </ul>
                         </div>
                     </li>
@@ -323,11 +322,10 @@ li{
                     <li class="category"><a href="#">Category <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li><a href="userHome.jsp?type=mobile">Mobile</a></li>
+                                <li><a href="userHome.jsp?type=macbook">Macbook</a></li>
                                 <li><a href="userHome.jsp?type=acer">Acer</a></li>
-                                <li><a href="userHome.jsp?type=laptop">laptop</a></li>
-                                <li><a href="userHome.jsp?type=nitro">Nitro</a></li>
-                                <li><a href="userHome.jsp?type=ligion">Ligion</a></li>
+                                <li><a href="userHome.jsp?type=dell">Dell</a></li>
+                                <li><a href="userHome.jsp?type=hp">HP</a></li>
                             </ul>
                         </div>
                     </li>
@@ -376,11 +374,10 @@ li{
                     <li class="category"><a href="#">Category <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li><a href="index.jsp?type=macbook">MacBook</a></li>
-                                <li><a href="index.jsp?type=acer">Acer</a></li>
-                                <li><a href="index.jsp?type=dell">Dell</a></li>
-                                <li><a href="index.jsp?type=nitro">Nitro</a></li>
-                                <li><a href="index.jsp?type=ligion">Ligion</a></li>
+                                <li><a href="userHome.jsp?type=macbook">Macbook</a></li>
+                                <li><a href="userHome.jsp?type=acer">Acer</a></li>
+                                <li><a href="userHome.jsp?type=dell">Dell</a></li>
+                                <li><a href="userHome.jsp?type=hp">HP</a></li>
                             </ul>
                         </div>
                     </li>                    
