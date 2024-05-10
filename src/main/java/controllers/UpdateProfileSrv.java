@@ -30,6 +30,15 @@ public class UpdateProfileSrv extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    /**
+     * Handles HTTP PUT requests for updating user profile information.
+     * 
+     * @param request  The HttpServletRequest object containing the request parameters.
+     * @param response The HttpServletResponse object for sending the response.
+     * @throws ServletException If a servlet-specific error occurs.
+     * @throws IOException      If an I/O error occurs while processing the request.
+     */
+
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -53,9 +62,18 @@ public class UpdateProfileSrv extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	/**
+	 * Handles HTTP POST requests by delegating to the doPut method for processing user profile updates.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doPut(request, response);
 	}
 
 }

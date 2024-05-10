@@ -374,10 +374,10 @@ li{
                     <li class="category"><a href="#">Category <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li><a href="userHome.jsp?type=macbook">Macbook</a></li>
-                                <li><a href="userHome.jsp?type=acer">Acer</a></li>
-                                <li><a href="userHome.jsp?type=dell">Dell</a></li>
-                                <li><a href="userHome.jsp?type=hp">HP</a></li>
+                                <li><a href="adminViewProduct.jsp?type=macbook">Macbook</a></li>
+                                <li><a href="adminViewProduct.jsp?type=acer">Acer</a></li>
+                                <li><a href="adminViewProduct.jsp?type=dell">Dell</a></li>
+                                <li><a href="adminViewProduct.jsp?type=hp">HP</a></li>
                             </ul>
                         </div>
                     </li>                    

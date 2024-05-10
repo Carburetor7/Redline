@@ -10,7 +10,12 @@ import java.util.ResourceBundle;
 public class DBConnection {
 	private static Connection conn;
 	
-	
+	/**
+	 * Provides a database connection using the specified configuration properties.
+	 * If the connection is not initialized or is closed, a new connection is established.
+	 * 
+	 * @return A Connection object representing the database connection.
+	 */
 	public static Connection provideConnection() {
 		try {
 			if(conn == null || conn.isClosed()) {
@@ -35,10 +40,20 @@ public class DBConnection {
 	}
 	
 	
+	/**
+	 * Closes the given database connection.
+	 * 
+	 * @param con The Connection object to be closed.
+	 */
 	public static void closeConnection(Connection con) {
 		
 	}
 
+	/**
+	 * Closes the given ResultSet object.
+	 * 
+	 * @param rs The ResultSet object to be closed.
+	 */
 	public static void closeConnection(ResultSet rs) {
 		try {
 			if (rs != null && !rs.isClosed()) {
@@ -53,6 +68,11 @@ public class DBConnection {
 		}
 	}
 
+	/**
+	 * Closes the given PreparedStatement object.
+	 * 
+	 * @param ps The PreparedStatement object to be closed.
+	 */
 	public static void closeConnection(PreparedStatement ps) {
 		try {
 			if (ps != null && !ps.isClosed()) {

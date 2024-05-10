@@ -167,8 +167,10 @@
                     <% String ptype = product.getProdType(); %>
                     <label for="productType">Product Type</label>
                     <select name="type" id="productType" class="form-control" required>
-                        <option value="mobile" <%= "mobile".equalsIgnoreCase(ptype) ? "selected" : "" %>>MOBILE</option>
-                        <!-- Add other options here -->
+                        <option value="macbook" <%="macbook".equalsIgnoreCase(ptype) ? "selected" : "" %>>Macbook</option>
+                        <option value="acer">Acer</option>
+                        <option value="dell">Dell</option>
+                        <option value="hp">HP</option>
                     </select>
                 </div>
             </div>

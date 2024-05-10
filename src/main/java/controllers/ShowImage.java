@@ -24,7 +24,15 @@ public class ShowImage extends HttpServlet {
 	public ShowImage() {
 		super();
 	}
-
+	
+	/**
+	 * Handles HTTP GET requests for retrieving product images.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,6 +58,14 @@ public class ShowImage extends HttpServlet {
 
 	}
 
+	/**
+	 * Handles HTTP POST requests by delegating to the doGet method for processing.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

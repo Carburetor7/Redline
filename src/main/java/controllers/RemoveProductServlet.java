@@ -21,6 +21,14 @@ public class RemoveProductServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * Handles HTTP DELETE requests for removing products by admin.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,6 +61,14 @@ public class RemoveProductServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * Handles HTTP POST requests for removing products by admin.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

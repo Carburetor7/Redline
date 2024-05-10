@@ -17,6 +17,13 @@ import utils.MailMessage;
 
 public class OrderService implements OrderInterface {
 
+	/**
+	 * Processes the payment for a user's order.
+	 *
+	 * @param userName   The username of the user placing the order.
+	 * @param paidAmount The amount paid for the order.
+	 * @return A string indicating the status of the order placement (success or failure).
+	 */
 	@Override
 	public String paymentSuccess(String userName, double paidAmount) {
 		// TODO Auto-generated method stub
@@ -74,6 +81,15 @@ public class OrderService implements OrderInterface {
 		return status;
 	}
 
+	/**
+	 * This method adds an order to the database.
+	 * It takes an OrderBean object containing transaction details,
+	 * such as transaction ID, product ID, quantity, amount, and status.
+	 * The method inserts these details into the 'orders' table in the database.
+	 *
+	 * @param order The OrderBean object containing order details.
+	 * @return True if the order is successfully added, false otherwise.
+	 */
 	@Override
 	public boolean addOrder(OrderBean order) {
 		// TODO Auto-generated method stub
@@ -107,6 +123,15 @@ public class OrderService implements OrderInterface {
 		
 	}
 
+	/**
+	 * This method adds a transaction to the 'transactions' table in the database.
+	 * It takes a Transaction object containing transaction details such as transaction ID,
+	 * user name, transaction date and time, and transaction amount.
+	 * The method inserts these details into the 'transactions' table.
+	 *
+	 * @param transaction The Transaction object containing transaction details.
+	 * @return True if the transaction is successfully added, false otherwise.
+	 */
 	@Override
 	public boolean addTransaction(Transaction transaction) {
 		// TODO Auto-generated method stub
@@ -138,6 +163,14 @@ public class OrderService implements OrderInterface {
 		return flag;
 	}
 
+	/**
+	 * This method counts the total quantity of a product that has been sold based on its product ID.
+	 * It retrieves this information from the 'orders' table in the database, specifically summing up
+	 * the quantity of orders for the specified product ID.
+	 *
+	 * @param prodId The product ID for which the sold quantity is to be counted.
+	 * @return The total quantity of the product that has been sold.
+	 */
 	@Override
 	public int countSoldItem(String prodId) {
 		// TODO Auto-generated method stub
@@ -171,6 +204,13 @@ public class OrderService implements OrderInterface {
 		return count;
 	}
 
+	/**
+	 * Retrieves a list of all orders from the database.
+	 * This method fetches all order details including order ID, product ID, quantity,
+	 * amount, and shipment status from the 'orders' table in the database.
+	 *
+	 * @return A list containing OrderBean objects representing all orders in the database.
+	 */
 	@Override
 	public List<OrderBean> getAllOrders() {
 		// TODO Auto-generated method stub
@@ -205,6 +245,14 @@ public class OrderService implements OrderInterface {
 		return orderList;
 	}
 
+	/**
+	 * Retrieves a list of orders associated with a specific user identified by their email ID.
+	 * This method fetches order details including order ID, product ID, quantity, amount,
+	 * and shipment status from the 'orders' table and 'transactions' table in the database.
+	 *
+	 * @param emailId The email ID of the user whose orders are to be retrieved.
+	 * @return A list containing OrderBean objects representing orders associated with the user.
+	 */
 	@Override
 	public List<OrderBean> getOrdersByUserId(String emailId) {
 		// TODO Auto-generated method stub
@@ -240,6 +288,17 @@ public class OrderService implements OrderInterface {
 		return orderList;
 	}
 
+	/**
+	 * Retrieves a list of OrderDetails objects containing detailed information about all orders
+	 * associated with a specific user identified by their email ID.
+	 *
+	 * This method fetches order details including order ID, product ID, product image, product name,
+	 * quantity, amount, order time, and shipment status from the 'orders', 'product', and 'transactions'
+	 * tables in the database based on the provided user email ID.
+	 *
+	 * @param userEmailId The email ID of the user whose order details are to be retrieved.
+	 * @return A list containing OrderDetails objects representing detailed order information for the user.
+	 */
 	@Override
 	public List<OrderDetails> getAllOrderDetails(String userEmailId) {
 		// TODO Auto-generated method stub
@@ -281,6 +340,16 @@ public class OrderService implements OrderInterface {
 		return orderList;
 	}
 
+	/**
+	 * Marks an order as shipped in the database based on the provided order ID and product ID.
+	 *
+	 * This method updates the 'orders' table in the database to set the 'shipped' flag to 1 (indicating
+	 * shipped status) for the specified order and product IDs if the order was not already marked as shipped.
+	 *
+	 * @param orderId The ID of the order to be marked as shipped.
+	 * @param prodId The ID of the product associated with the order.
+	 * @return A status message indicating whether the order was successfully marked as shipped or not.
+	 */
 	@Override
 	public String shipNow(String orderId, String prodId) {
 		// TODO Auto-generated method stub

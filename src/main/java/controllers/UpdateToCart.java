@@ -27,6 +27,14 @@ public class UpdateToCart extends HttpServlet {
 
 	}
 
+	/**
+	 * Handles HTTP PUT requests for updating product quantity in the cart.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -91,10 +99,18 @@ public class UpdateToCart extends HttpServlet {
 
 	}
 
+	/**
+	 * Handles HTTP POST requests by delegating to the doPut method for processing product updates in the cart.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doGet(request, response);
+		doPut(request, response);
 	}
 	
 }

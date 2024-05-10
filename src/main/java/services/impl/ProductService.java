@@ -17,6 +17,21 @@ import utils.MailMessage;
 
 public class ProductService implements ProductInterface {
 
+	/**
+	 * Adds a new product to the database.
+	 *
+	 * This method creates a new product instance with the provided details and generates a unique
+	 * product ID using the IDUtil class. It then calls the overloaded addProduct method to insert
+	 * the product into the database.
+	 *
+	 * @param prodName The name of the product.
+	 * @param prodType The type or category of the product.
+	 * @param prodInfo Additional information or description about the product.
+	 * @param prodPrice The price of the product.
+	 * @param prodQuantity The quantity of the product available.
+	 * @param prodImage An InputStream containing the image data of the product.
+	 * @return A status message indicating whether the product was successfully added to the database.
+	 */
 	@Override
 	public String addProduct(String prodName, String prodType, String prodInfo, double prodPrice, int prodQuantity,
 			InputStream prodImage) {
@@ -31,6 +46,19 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Adds a product to the database based on the provided Product object.
+	 *
+	 * This method inserts a new product into the database using the details specified in the Product
+	 * object. If the product ID is not already set in the Product object, a new ID is generated using
+	 * the IDUtil class. The product information including ID, name, type, information, price, quantity,
+	 * and image are added to the 'product' table in the database.
+	 *
+	 * @param product The Product object containing details of the product to be added.
+	 * @return A status message indicating the result of the product registration process.
+	 *         - If the product is added successfully, the message includes the product ID.
+	 *         - If an error occurs during registration, an error message is returned.
+	 */
 	@Override
 	public String addProduct(Product product) {
 		// TODO Auto-generated method stub
@@ -75,6 +103,18 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Removes a product from the database based on the provided product ID.
+	 *
+	 * This method deletes a product from the 'product' table in the database using the specified
+	 * product ID. Additionally, it removes any references to the product in the 'usercart' table,
+	 * ensuring that the product is completely removed from the system.
+	 *
+	 * @param prodId The ID of the product to be removed.
+	 * @return A status message indicating the result of the product removal process.
+	 *         - If the product is removed successfully, the message indicates successful removal.
+	 *         - If an error occurs during removal, an error message with details is returned.
+	 */
 	@Override
 	public String removeProduct(String prodId) {
 		// TODO Auto-generated method stub
@@ -115,6 +155,21 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Updates an existing product with new information in the database.
+	 *
+	 * This method updates an existing product's details in the 'product' table of the database
+	 * based on the provided previous product information and the updated product information.
+	 * It checks if the product IDs of the previous and updated products match before proceeding
+	 * with the update operation. If the IDs don't match, the update operation is considered invalid.
+	 *
+	 * @param prevProduct   The previous product information before the update.
+	 * @param updatedProduct The updated product information to be applied.
+	 * @return A status message indicating the result of the product update operation.
+	 *         - If the product is updated successfully, the message indicates successful update.
+	 *         - If the product IDs don't match or an error occurs during update, an appropriate
+	 *           error message with details is returned.
+	 */
 	@Override
 	public String updateProduct(Product prevProduct, Product updatedProduct) {
 		// TODO Auto-generated method stub
@@ -160,6 +215,18 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Updates the price of a product in the database.
+	 *
+	 * This method updates the price of a product in the 'product' table of the database
+	 * based on the provided product ID and the new price.
+	 *
+	 * @param prodId       The ID of the product whose price needs to be updated.
+	 * @param updatedPrice The new price to be set for the product.
+	 * @return A status message indicating the result of the price update operation.
+	 *         - If the price is updated successfully, the message indicates successful update.
+	 *         - If an error occurs during the update, an error message with details is returned.
+	 */
 	@Override
 	public String updateProductPrice(String prodId, double updatedPrice) {
 		// TODO Auto-generated method stub
@@ -191,6 +258,17 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Retrieves a list of all products from the database.
+	 *
+	 * This method retrieves and returns a list of all products available in the 'product' table
+	 * of the database. Each product in the list contains details such as ID, name, type, information,
+	 * price, quantity, and image.
+	 *
+	 * @return A list of Product objects representing all products in the database.
+	 *         - If products are found in the database, the list contains Product objects with details.
+	 *         - If no products are found or an error occurs during retrieval, an empty list is returned.
+	 */
 	@Override
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
@@ -234,6 +312,18 @@ public class ProductService implements ProductInterface {
 		return products;
 	}
 
+	/**
+	 * Retrieves a list of products by their type from the database.
+	 *
+	 * This method retrieves and returns a list of products from the 'product' table in the database
+	 * based on the specified type. It performs a case-insensitive search for products whose type
+	 * matches or partially matches the provided type parameter.
+	 *
+	 * @param type The type of products to retrieve (e.g., "electronics", "clothing").
+	 * @return A list of Product objects representing products of the specified type.
+	 *         - If products matching the type are found in the database, the list contains Product objects with details.
+	 *         - If no matching products are found or an error occurs during retrieval, an empty list is returned.
+	 */
 	@Override
 	public List<Product> getAllProductsByType(String type) {
 		// TODO Auto-generated method stub
@@ -277,6 +367,17 @@ public class ProductService implements ProductInterface {
 		return products;
 	}
 
+	/**
+	 * Searches for products in the database based on a search query.
+	 *
+	 * This method performs a search across product type, name, and information fields in the database
+	 * to find products that match or partially match the provided search query. The search is case-insensitive.
+	 *
+	 * @param search The search query used to find matching products.
+	 * @return A list of Product objects representing products that match the search query.
+	 *         - If products matching the search query are found in the database, the list contains Product objects with details.
+	 *         - If no matching products are found or an error occurs during retrieval, an empty list is returned.
+	 */
 	@Override
 	public List<Product> searchAllProducts(String search) {
 		// TODO Auto-generated method stub
@@ -290,7 +391,7 @@ public class ProductService implements ProductInterface {
 
 		try {
 			ps = con.prepareStatement(
-					"SELECT * FROM `origin_tech`.product where lower(ptype) like ? or lower(pname) like ? or lower(pinfo) like ?");
+					"SELECT * FROM `origin_tech`.product where lower(ptype) LIKE ? or lower(pname) like ? or lower(pinfo) like ?");
 			search = "%" + search + "%";
 			ps.setString(1, search);
 			ps.setString(2, search);
@@ -324,6 +425,18 @@ public class ProductService implements ProductInterface {
 		return products;
 	}
 
+	/**
+	 * Retrieves the image data associated with a specific product from the database.
+	 *
+	 * This method fetches the image data (as a byte array) for a product identified by its unique product ID (prodId)
+	 * from the database. If the product with the given ID exists and has an associated image, the method returns
+	 * the byte array representing the image. If no image is found or an error occurs during retrieval, null is returned.
+	 *
+	 * @param prodId The product ID used to identify the product whose image data is to be retrieved.
+	 * @return A byte array representing the image data of the product if found, or null if no image is found or an error occurs.
+	 *         - If an image is found for the specified product ID, the byte array contains the image data.
+	 *         - If no image is associated with the product ID or an error occurs during retrieval, null is returned.
+	 */
 	@Override
 	public byte[] getImage(String prodId) {
 		// TODO Auto-generated method stub
@@ -357,6 +470,21 @@ public class ProductService implements ProductInterface {
 		
 	}
 
+	/**
+	 * Retrieves the details of a product based on its unique product ID (prodId) from the database.
+	 *
+	 * This method fetches the details of a product, including its ID, name, type, description, price, quantity,
+	 * and image (if available), from the database based on the provided product ID (prodId). If a product with
+	 * the given ID exists in the database, its details are encapsulated in a Product object and returned. If no
+	 * product is found with the specified ID or an error occurs during retrieval, null is returned.
+	 *
+	 * @param prodId The unique product ID used to identify the product whose details are to be retrieved.
+	 * @return A Product object containing the details of the product if found, or null if no product is found
+	 *         or an error occurs during retrieval.
+	 *         - If a product with the specified ID is found in the database, its details are encapsulated in
+	 *           the returned Product object.
+	 *         - If no product is found with the given ID or an error occurs during retrieval, null is returned.
+	 */
 	@Override
 	public Product getProductDetails(String prodId) {
 		// TODO Auto-generated method stub
@@ -396,6 +524,32 @@ public class ProductService implements ProductInterface {
 		return product;
 	}
 
+	/**
+	 * Updates the details of a product in the database without changing its image.
+	 *
+	 * This method is responsible for updating the details of a product in the database without modifying its
+	 * associated image. It first checks if the previous product ID matches the updated product ID to ensure
+	 * consistency. If they are different, the method returns a failure status indicating that both products are
+	 * different.
+	 *
+	 * If the product IDs match, the method proceeds to update the product details in the database. It updates the
+	 * product name, type, info, price, quantity, and image (if provided) based on the updated product object. If
+	 * the update operation is successful and the updated quantity is greater than the previous quantity, it also
+	 * checks for customer demands for the product and notifies them via email about the availability of the
+	 * product. Additionally, it removes the product from the list of demanded products for those customers.
+	 *
+	 * @param prevProductId The previous product ID that needs to be updated.
+	 * @param updatedProduct The updated Product object containing the new details to be updated in the database.
+	 * @return A string status indicating the outcome of the product update operation:
+	 *         - If the product IDs are different, "Both Products are Different, Updation Failed!" is returned.
+	 *         - If the product is successfully updated without changing the image and the quantity is increased,
+	 *           "Product Updated Successfully! And Mail Send to the customers who were waiting for this product!"
+	 *           is returned along with the mail notification to customers.
+	 *         - If the product is successfully updated without changing the image and the quantity is not increased,
+	 *           "Product Updated Successfully!" is returned.
+	 *         - If the product is not available in the store, "Product Not available in the store!" is returned.
+	 *         - If an SQL exception occurs during the update operation, "Product Updation Failed!" is returned.
+	 */
 	@Override
 	public String updateProductWithoutImage(String prevProductId, Product updatedProduct) {
 		// TODO Auto-generated method stub
@@ -463,6 +617,17 @@ public class ProductService implements ProductInterface {
 		return status;
 	}
 
+	/**
+	 * Retrieves the price of a product based on its product ID.
+	 *
+	 * This method is responsible for fetching the price of a product from the database using its unique product ID.
+	 * It establishes a database connection, executes a prepared SQL statement to select the product's price, and
+	 * retrieves the price value from the result set.
+	 *
+	 * @param prodId The product ID of the product whose price is to be retrieved.
+	 * @return The price of the product as a double value. If the product ID is not found in the database or an SQL
+	 *         exception occurs during the retrieval process, the default price of 0.0 is returned.
+	 */
 	@Override
 	public double getProductPrice(String prodId) {
 		// TODO Auto-generated method stub
@@ -496,6 +661,17 @@ public class ProductService implements ProductInterface {
 
 	}
 
+	/**
+	 * Decreases the quantity of a product by a specified amount after a successful sale.
+	 *
+	 * This method is responsible for reducing the quantity of a product in the database by a specified amount
+	 * after a successful sale transaction. It takes the product ID and the quantity to be deducted as parameters,
+	 * establishes a database connection, and executes an SQL update statement to decrement the product quantity.
+	 *
+	 * @param prodId The product ID of the product to be updated.
+	 * @param n      The quantity to be deducted from the product's current quantity.
+	 * @return A boolean value indicating whether the operation was successful (true) or not (false).
+	 */
 	@Override
 	public boolean sellNProduct(String prodId, int n) {
 		// TODO Auto-generated method stub
@@ -529,6 +705,17 @@ public class ProductService implements ProductInterface {
 		return flag;
 	}
 
+	/**
+	 * Retrieves the current quantity of a product based on its product ID.
+	 *
+	 * This method queries the database to retrieve the current quantity of a product
+	 * specified by its product ID. It establishes a database connection, executes an SQL
+	 * SELECT statement to fetch the product quantity, and returns the retrieved quantity.
+	 *
+	 * @param prodId The product ID of the product whose quantity is to be retrieved.
+	 * @return The current quantity of the product specified by the product ID.
+	 *         Returns 0 if the product ID is not found or an SQL exception occurs.
+	 */
 	@Override
 	public int getProductQuantity(String prodId) {
 		// TODO Auto-generated method stub

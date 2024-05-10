@@ -24,7 +24,15 @@ public class AddCartServlet extends HttpServlet {
 	public AddCartServlet() {
 		super();
 	}
-
+	
+	/**
+	 * Handles HTTP GET requests. Checks session for user credentials and processes cart operations.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -108,7 +116,15 @@ public class AddCartServlet extends HttpServlet {
 		}
 
 	}
-
+	
+	/**
+	 * Handles HTTP POST requests by delegating to the doGet method.
+	 * 
+	 * @param request  The HttpServletRequest object containing the request parameters.
+	 * @param response The HttpServletResponse object for sending the response.
+	 * @throws ServletException If a servlet-specific error occurs.
+	 * @throws IOException      If an I/O error occurs while processing the request.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

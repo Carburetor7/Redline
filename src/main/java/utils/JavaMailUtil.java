@@ -27,6 +27,19 @@ import java.util.logging.Logger;
 
 public class JavaMailUtil {
 
+	/**
+	 * Sends an email to the specified recipient email address using SMTP protocol.
+	 *
+	 * This method prepares and sends an email message to the recipient email address using the SMTP protocol.
+	 * It configures the SMTP server properties such as host, port, authentication, and TLS encryption.
+	 * The email sender's credentials (email ID and password) are retrieved from a ResourceBundle named "application".
+	 * The method then creates a Session instance with the configured properties and authenticates the sender using
+	 * the specified email ID and password. It prepares the email message using the prepareMessage helper method
+	 * and sends it using the Transport class. Finally, it prints a success message upon successful email delivery.
+	 *
+	 * @param recipientMailId The email address of the recipient to whom the email will be sent.
+	 * @throws MessagingException If an error occurs while sending the email.
+	 */
 	public static void sendMail(String recipientMailId) throws MessagingException {
 
 		System.out.println("Preparing to send Mail");
@@ -62,7 +75,21 @@ public class JavaMailUtil {
 		System.out.println("Message Sent Successfully!");
 
 	}
+	
 
+	/**
+	 * Prepares an email message to be sent using the provided Session instance, sender email, and recipient email.
+	 *
+	 * This method creates a MimeMessage object using the given Session instance. It sets the sender's email address,
+	 * recipient's email address, subject, and text content of the email message. The subject is set to "Welcome to Ellison Electronics",
+	 * and the text content of the email includes a personalized greeting for the recipient based on their email address.
+	 * The prepared MimeMessage object is then returned for sending.
+	 *
+	 * @param session         The Session instance used to create the MimeMessage.
+	 * @param myAccountEmail  The sender's email address.
+	 * @param recipientEmail  The recipient's email address.
+	 * @return                The prepared MimeMessage object ready to be sent.
+	 */
 	private static Message prepareMessage(Session session, String myAccountEmail, String recipientEmail) {
 
 		try {
@@ -82,6 +109,20 @@ public class JavaMailUtil {
 
 	}
 
+	/**
+	 * Sends an email message to the specified recipient with the given subject and HTML text content.
+	 *
+	 * This method prepares to send an email message using the SMTP protocol and Gmail's SMTP server. It sets up the necessary
+	 * properties for the mail session, including the host, authentication, and transport protocol. The email sender's credentials
+	 * (email ID and password) are retrieved from the "application" ResourceBundle. The email message is created using the provided
+	 * Session instance, sender email, recipient email, subject, and HTML text content. The prepared message is then sent using
+	 * the Transport class.
+	 *
+	 * @param recipient        The recipient's email address to send the email.
+	 * @param subject          The subject of the email.
+	 * @param htmlTextMessage  The HTML content of the email message.
+	 * @throws MessagingException If an error occurs while preparing or sending the email message.
+	 */
 	protected static void sendMail(String recipient, String subject, String htmlTextMessage) throws MessagingException {
 
 		System.out.println("Preparing to send Mail");
@@ -118,6 +159,19 @@ public class JavaMailUtil {
 
 	}
 
+	/**
+	 * Prepares an email message with the specified Session, sender email, recipient email, subject, and HTML text content.
+	 *
+	 * This method creates a MimeMessage using the provided Session instance and sets up the sender, recipient, subject, and
+	 * HTML content of the email message. The message is then returned for further processing or sending.
+	 *
+	 * @param session         The Session instance for creating the email message.
+	 * @param myAccountEmail  The sender's email address.
+	 * @param recipientEmail  The recipient's email address.
+	 * @param subject         The subject of the email message.
+	 * @param htmlTextMessage The HTML content of the email message.
+	 * @return The prepared MimeMessage instance.
+	 */
 	private static Message prepareMessage(Session session, String myAccountEmail, String recipientEmail, String subject,
 			String htmlTextMessage) {
 

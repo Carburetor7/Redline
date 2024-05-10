@@ -18,6 +18,14 @@ import services.DemandInterface;
 //back into the store
 public class DemandService implements DemandInterface {
 
+	/**
+	 * Adds a product demand entry for a user in the database.
+	 *
+	 * @param userId     The ID of the user making the demand.
+	 * @param prodId     The ID of the product demanded.
+	 * @param demandQty  The quantity demanded by the user.
+	 * @return True if the product demand entry is successfully added; false otherwise.
+	 */
 	@Override
 	public boolean addProduct(String userId, String prodId, int demandQty) {
 		// TODO Auto-generated method stub
@@ -71,6 +79,12 @@ public class DemandService implements DemandInterface {
 		return flag;
 	}
 
+	/**
+	 * Adds a product demand entry for a user in the database using a Demand object.
+	 *
+	 * @param userDemandBean The Demand object containing user ID, product ID, and demand quantity.
+	 * @return True if the product demand entry is successfully added; false otherwise.
+	 */
 	@Override
 	public boolean addProduct(Demand userDemandBean) {
 		// TODO Auto-generated method stub
@@ -80,6 +94,13 @@ public class DemandService implements DemandInterface {
 		
 	}
 
+	/**
+	 * Removes a product demand entry for a user from the database.
+	 *
+	 * @param userId The ID of the user whose product demand is to be removed.
+	 * @param prodId The ID of the product for which the demand entry is to be removed.
+	 * @return True if the product demand entry is successfully removed or not present; false otherwise.
+	 */
 	@Override
 	public boolean removeProduct(String userId, String prodId) {
 		// TODO Auto-generated method stub
@@ -133,6 +154,12 @@ public class DemandService implements DemandInterface {
 		return flag;
 	}
 
+	/**
+	 * Retrieves a list of demands for a specific product from the database.
+	 *
+	 * @param prodId The ID of the product for which demands are to be retrieved.
+	 * @return A list of Demand objects representing the demands for the specified product.
+	 */
 	@Override
 	public List<Demand> haveDemanded(String prodId) {
 		// TODO Auto-generated method stub
