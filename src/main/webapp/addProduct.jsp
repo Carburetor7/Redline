@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Add Products</title>
 	<style>
         .add-product.container {
             max-width: 1200px;
