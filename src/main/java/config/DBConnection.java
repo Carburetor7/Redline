@@ -23,7 +23,7 @@ public class DBConnection {
 				String connectionDatabase = rb.getString("db.connectionDatabase");
 				String driverName = rb.getString("db.driverName");
 				String username = rb.getString("db.username");
-				String password = "";
+				String password = rb.getString("db.password");
 				
 				try {
 					Class.forName(driverName);

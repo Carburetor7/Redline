@@ -1,273 +1,407 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ page
-	import="services.impl.*, services.*,models.*,java.util.*,javax.servlet.ServletOutputStream,java.io.*"%>
+<%@ page import="services.impl.*, services.*,models.*,java.util.*,javax.servlet.ServletOutputStream,java.io.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Origin Tech</title>
+<title>AutoParts Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <style>
-
-.blogs.container{
-    max-width: 1200px;
-    /* border: 1px solid red; */
+.products.container {
+    max-width: 1280px;
     margin-inline: auto;
-
+    padding: 0 20px;
 }
 
-.blogs a{
+.products a {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    font-family: "Raleway", sans-serif;
-    color: black;
+    font-family: 'Oswald', sans-serif;
+    color: var(--dark-color);
+    transition: color 0.3s ease;
 }
 
-.blogs a:hover{
-    color: rgb(26, 183, 157);
+.products a:hover {
+    color: var(--main-color);
     cursor: pointer;
 }
 
-.blogs li{
+.products li {
     list-style: none;
 }
 
-.section.blogs{
+.section.products {
     padding-block: 5rem;
-  }
-  
-  .blogs .container .section-title {
+    background-color: var(--light-color, #f5f5f5);
+}
+
+.products .container .section-title {
     text-align: center;
-    margin-block-end: 2rem;
+    margin-bottom: 40px;
     width: 100%;
-    color: #141517;
-    text-align: center;
-    font-family: "Raleway", sans-serif;
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.68rem;
-  
-    
-  }
-  .blogs .grid-list {
+    color: #2c3e50;
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.products .container .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #e74c3c;
+}
+
+.products .grid-list {
     display: grid;
-    gap: 2rem;
-  }
-  .blogs .container .grid-list {
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.products .container .grid-list {
     grid-template-columns: repeat(3, 1fr);
-  }
-  
-  
-  .blogs .container .grid-list .blog-card {
+}
+
+.products .container .grid-list .product-card {
     position: relative;
     background-color: #FFF;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     overflow: hidden;
-    background: #FFF;
-    box-shadow: 0px 20px 40px 0px rgba(28, 51, 84, 0.1);
-  }
-  
-  .img-holder {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.products .container .grid-list .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.img-holder {
+    position: relative;
     aspect-ratio: var(--width) / var(--height);
     overflow: hidden;
-  }
-  
-  .img-cover {
+}
+
+.img-holder:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    -o-object-fit: cover;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .img-holder:before {
+    opacity: 1;
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-  }
-  
-  
-  a, img, span, button, i {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .img-cover {
+    transform: scale(1.05);
+}
+
+a, img, span, button, i {
     display: block;
-  }
-  
-  .blogs .container .grid-list .blog-card .card-content {
-    padding: 2rem 1.5rem;
-  }
-  
- .blogs .h3 {
-    font-size: 1.4rem;
-  }
-  
-  .blogs :is(.h1, .h2, .h3, p) {
-    font-family: "Raleway", sans-serif;
-  }
-  
-  .blogs .btn {
+}
+
+.products .container .grid-list .product-card .card-content {
+    padding: 25px 20px;
+}
+
+.products .h3 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.products :is(.h1, .h2, .h3, p) {
+    font-family: 'Oswald', sans-serif;
+}
+
+.products .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main-color);
-    color: #FFF;
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1rem;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
     text-align: center;
-    border-radius: 0.3rem;
+    border-radius: 6px;
     overflow: hidden;
-    transition: 0.5s ease;
+    transition: all 0.3s ease;
     line-height: 3rem;
-    padding: 0 1rem;
-    gap: 1rem;
-    font-weight: 400;
-    border: 1px solid var(--main-color);
+    padding: 0 15px;
+    gap: 8px;
+    font-weight: 600;
     cursor: pointer;
-  }
-  
-  .blogs .add:hover{
-    background-color: rgb(27, 129, 112)
-  }
-  
-  .blogs .container .grid-list .blog-card .card-content .btn-blue {
-    border-radius: 0.3rem;
-    background-color: #2abbe8;
-    border: 1px solid #2abbe8;
-  }
-  
-  .blogs .container .grid-list .blog-card .card-content .btn-blue:hover{
-    background-color: #118aaf;
-  }
-  
-  .blogs .product-title{
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    flex: 1;
+}
+
+.products .add {
+    background-color: #2c3e50;
+}
+
+.products .add:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+}
+
+.products .container .grid-list .product-card .card-content .btn-blue {
+    background-color: #e74c3c;
+}
+
+.products .container .grid-list .product-card .card-content .btn-blue:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.products .product-title {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 600;
-      font-family: "Raleway", sans-serif;
-      color: black;
-      margin-block-end: 10px;
-  }
-  
-  .blogs .product-description{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.products .product-description {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 400;
-    font-family: "Nunito Sans", sans-serif;
-    color: black;
+    font-family: 'Roboto', sans-serif;
+    color: #555;
     text-align: left;
-    margin-block-end: 10px;
-  }
-  
-  .blogs .price{
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.products .price {
+    display: inline-block;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
-    font-family: "Nunito Sans", sans-serif;
-    color: red;
-    text-align: center;
-    margin-block-end: 20px;
-  }
-  
-  .blogs .product-btn-form{
+    font-family: 'Oswald', sans-serif;
+    color: #e74c3c;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.products .price:before {
+    content: "₹";
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.products .product-btn-form {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    /* gap: 20px; */
-  }
-  
-  .product-link{
-  text-decoration: underline;
-  color: var(--main-color);
-  }
+    align-items: center;
+    gap: 10px;
+}
+
+/* Part badge */
+.part-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(44, 62, 80, 0.8);
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 5;
+    letter-spacing: 0.5px;
+}
+
+/* Stock indicator */
+.stock-indicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(39, 174, 96, 0.8);
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 5;
+    letter-spacing: 0.5px;
+}
+
+.out-of-stock {
+    background-color: rgba(231, 76, 60, 0.8);
+}
+
+.low-stock {
+    background-color: rgba(243, 156, 18, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .products .container .grid-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .products .container .grid-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .products .container .section-title {
+        font-size: 28px;
+    }
+}
+
+.product-link {
+    text-decoration: underline;
+    color: #3498db;
+}
 </style>
 </head>
 <body>
-	<%
-		/* Checking the user credentials */
-		String userName = (String) session.getAttribute("username");
-	
-		if (userName == null) {
-	
-			response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
-		}
-	
-		ProductService prodDao = new ProductService();
-		List<Product> products = new ArrayList<Product>();
-	
-		String search = request.getParameter("search");
-		String type = request.getParameter("type");
-		String message = "All Products";
-		if (search != null) {
-			products = prodDao.searchAllProducts(search);
-			message = "Showing Results for '" + search + "'";
-		} else if (type != null) {
-			products = prodDao.getAllProductsByType(type);
-			message = "Showing Results for '" + type + "'";
-		} else {
-			products = prodDao.getAllProducts();
-		}
-		if (products.isEmpty()) {
-			message = "No items found for the search '" + (search != null ? search : type) + "'";
-			products = prodDao.getAllProducts();
-		}
-	%>
-	<jsp:include page="header.jsp" />
-	<section class="section blogs">
+    <%
+        /* Checking the user credentials */
+        String userName = (String) session.getAttribute("username");
+    
+        if (userName == null) {
+            response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
+        }
+    
+        ProductService prodDao = new ProductService();
+        List<Product> products = new ArrayList<Product>();
+    
+        String search = request.getParameter("search");
+        String type = request.getParameter("type");
+        String message = "Featured Auto Parts";
+        if (search != null) {
+            products = prodDao.searchAllProducts(search);
+            message = "Search Results for '" + search + "'";
+        } else if (type != null) {
+            products = prodDao.getAllProductsByType(type);
+            message = type.substring(0, 1).toUpperCase() + type.substring(1) + " Parts";
+        } else {
+            products = prodDao.getAllProducts();
+        }
+        if (products.isEmpty()) {
+            message = "No parts found for '" + (search != null ? search : type) + "'";
+            products = prodDao.getAllProducts();
+        }
+    %>
+    <jsp:include page="header.jsp" />
+    <section class="section products">
         <div class="container">
             <h2 class="h2 section-title"><%=message%></h2>
             <ul class="grid-list">
-            	<%
-				for (Product product : products) {
-				int cartQty = new CartService().getCartItemCount(userName, product.getProdId());
-				%>
+                <%
+                for (Product product : products) {
+                int cartQty = new CartService().getCartItemCount(userName, product.getProdId());
+                String stockStatus = "";
+                if (product.getProdQuantity() <= 0) {
+                    stockStatus = "out-of-stock";
+                } else if (product.getProdQuantity() <= 5) {
+                    stockStatus = "low-stock";
+                }
+                %>
                 <li>
-                    <div class="blog-card">
+                    <div class="product-card">
+                        <% if (!stockStatus.isEmpty()) { %>
+                        <div class="stock-indicator <%= stockStatus %>">
+                            <%= stockStatus.equals("out-of-stock") ? "OUT OF STOCK" : "LOW STOCK" %>
+                        </div>
+                        <% } %>
+                        <div class="part-badge"><%= product.getProdType() %></div>
                         <figure class="card-banner img-holder" style="--width: 410; --height: 260">
                             <img src="./ShowImage?pid=<%=product.getProdId()%>" width="410" height="260" loading="lazy" class="img-cover"
-                                alt="blog" />
+                                alt="<%= product.getProdName() %>" />
                         </figure>
 
                         <div class="card-content">
                             <h3 class="h3 product-title">
-                                <%=product.getProdName()%>
+                                <%= product.getProdName() %>
                             </h3>
                             <%
-								String description = product.getProdInfo();
-								description = description.substring(0, Math.min(description.length(), 100));
-							%>
-                            <p class="product-description"><%=description%></p>
-                            <h4 class="price">RS <%=product.getProdPrice()%></h4>
+                                String description = product.getProdInfo();
+                                description = description.substring(0, Math.min(description.length(), 100));
+                            %>
+                            <p class="product-description"><%= description %></p>
+                            <h4 class="price"><%= product.getProdPrice() %></h4>
                             <form method="post" class="product-btn-form">
-                            	<%
-									if (cartQty == 0) {
-								%>
-                                <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=1" class="btn add"><span class="span">Add to
-                                        Cart</span></button>
-
-                                <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=1" class="btn btn-blue buy"><span class="span">Buy
-                                        Now</span></button>
                                 <%
-									} else {
-								%>
-								 <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=0" class="btn add"><span class="span">Remove From
-                                        Cart</span></button>
+                                    if (cartQty == 0) {
+                                %>
+                                <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=1" class="btn add">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
 
-                                <button type="submit" formaction="cartDetails.jsp" class="btn btn-blue buy"><span class="span">Checkout</span></button>
-								<%
-									}
-								%>
+                                <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=1" class="btn btn-blue buy">
+                                    <i class="fas fa-shopping-cart"></i> Buy Now
+                                </button>
+                                <%
+                                    } else {
+                                %>
+                                 <button type="submit" formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=0" class="btn add">
+                                    <i class="fas fa-trash-alt"></i> Remove
+                                 </button>
+
+                                <button type="submit" formaction="cartDetails.jsp" class="btn btn-blue buy">
+                                    <i class="fas fa-credit-card"></i> Checkout
+                                </button>
+                                <%
+                                    }
+                                %>
                             </form>
                         </div>
                     </div>
                 </li>
                 <%
-				}
-				%>
+                }
+                %>
             </ul>
         </div>
     </section>
     <jsp:include page="footer.jsp" />
-	
 </body>
 </html>
